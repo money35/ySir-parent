@@ -1,1 +1,2 @@
 say goodBye
+say hello
