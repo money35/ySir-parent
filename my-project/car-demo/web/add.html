@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link href="css/add.css" rel="stylesheet" />
+	</head>
+	<body>
+		<h1>当当二手车<span style="font-size: 20px;">信息管理平台</span></h1>
+		<hr color="gold" size="4" />
+		<h4 align="center">添加页面</h4>
+		<form action="/car/add.do" method="post">
+			<div class="box">
+				<div class="row">
+					<div>名字</div>
+					<div> <input type="text" name="carName" placeholder="请输入汽车名称" /></div>
+				</div>
+				<div class="row">
+					<div>排量</div>
+					<div>
+						<input name="pl" type="text" placeholder="请输入排量" />
+					</div>
+				</div>
+				<div class="row">
+					<div>类型</div>
+					<div> 
+						<select name="carType">
+							<option value="轿车">轿车</option>
+							<option value="SUV">SUV</option>
+							<option value="MPV">MPV</option>
+							<option value="卡车">卡车</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div>价格</div>
+					<div> 
+						<input name="price" type="text" placeholder="请输入价格" />
+					</div>
+				</div>
+				
+
+				
+				<div class="row">
+					<div>里程</div>
+					<div> 
+						<input name="mileage" type="text" placeholder="请输入里程" />
+					</div>
+				</div>
+				
+				<div class="row">
+					<div>出厂日期</div>
+					<div> 
+						<input name="productionDate" type="text" placeholder="请输入出厂日期" />
+					</div>
+				</div>
+				
+				<div class="row">
+					<div>车架号</div>
+					<div> 
+						<input name="serial" type="text" placeholder="请输入车架号" />
+					</div>
+				</div>
+				
+				<div class="row">
+					<div>&nbsp;</div>
+					<div> 
+						<input type="submit" value="提交" />
+					</div>
+				</div>
+			</div>
+		
+		</form>
+	</body>
+</html>
