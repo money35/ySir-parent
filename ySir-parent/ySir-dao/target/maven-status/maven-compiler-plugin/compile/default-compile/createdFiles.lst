@@ -1,0 +1,8 @@
+com\money\pojo\Speaker.class
+com\money\pojo\User.class
+com\money\pojo\Video.class
+com\money\dao\AdminLoginDao.class
+com\money\pojo\Subject.class
+com\money\pojo\Course.class
+com\money\dao\VideoDao.class
+com\money\pojo\Admin.class

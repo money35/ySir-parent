@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.money.dao.SpeakerDao">
+    <resultMap id="BaseResultMap" type="com.money.pojo.Speaker">
+        <id column="id" property="id"/>
+        <result column="speaker_name" property="speakerName"/>
+        <result column="speaker_job" property="speakerJob"/>
+        <result column="head_img_url" property="headImgUrl"/>
+        <result column="speaker_desc" property="speakerDesc"/>
+    </resultMap>
+
+    <select id="findAllSpeaker" resultType="com.money.pojo.Speaker" resultMap="BaseResultMap">
+        select * from speaker
+    </select>
+    <insert id="addSpeaker">
+        insert into speaker values(null,#{speakerName},#{speakerDesc},#{speakerJob},#{headImgUrl})
+    </insert>
+    <update id="updateSpeaker">
+        update speaker set speaker_name = #{speakerName},speaker_desc = #{speakerDesc},speaker_job = #{speakerJob} where id = #{id}
+    </update>
+    <!-- 根据id查询 -->
+    <select id="findSpeakerById" resultMap="BaseResultMap">
+        select * from speaker where id = #{id}
+    </select>
+
+    <!--根据id删除-->
+    <delete id="delSpeakerById">
+       delete from speaker where id = #{id}
+    </delete>
+</mapper>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.money.dao.VideoDao">
+    <resultMap id="BaseResultMap" type="com.money.pojo.Video" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="title" property="title" jdbcType="VARCHAR" />
+        <result column="detail" property="detail" jdbcType="LONGNVARCHAR"/>
+        <result column="time" property="time" jdbcType="INTEGER" />
+        <result column="speaker_id" property="speakerId" jdbcType="INTEGER" />
+        <result column="course_id" property="courseId" jdbcType="INTEGER" />
+        <result column="video_url" property="videoUrl" jdbcType="VARCHAR" />
+        <result column="image_url" property="imageUrl" jdbcType="VARCHAR" />
+        <result column="play_num" property="playNum" jdbcType="INTEGER" />
+        <association property="speaker" javaType="com.money.pojo.Speaker">
+            <id property="id" column="id"/>
+            <result property="speakerName" column="speaker_name"/>
+        </association>
+        <association property="course" javaType="com.money.pojo.Course">
+            <id property="id" column="id"/>
+            <result property="courseTitle" column="course_title"/>
+        </association>
+    </resultMap>
+
+    <select id="findAllVideo" resultType="com.money.pojo.Video" resultMap="BaseResultMap" >
+        select video.id,title,detail,time,speaker_id,speaker_name,play_num from video,speaker where video.speaker_id = speaker.id
+    </select>
+
+    <!--根据id查询-->
+    <select id="findVideoByid" resultMap="BaseResultMap">
+        select video.id, title,speaker_id,speaker_name,course_id,course_title,time,video_url,image_url,play_num,detail from video,speaker,course
+        WHERE video.speaker_id = speaker.id and video.course_id = course.id and video.id = #{id}
+    </select>
+
+    <!-- 根据id修改相应的video信息 -->
+    <update id="updateVideo">
+        update video set title = #{title},speaker_id = #{speakerId},course_id=#{courseId},time=#{time},
+        video_url = #{videoUrl},image_url = #{imageUrl},play_num = #{playNum},detail = #{detail}
+        where id = #{id}
+
+    </update>
+    <insert id="addVideo">
+        insert into video(id,title,speaker_id,course_id,time,image_url,video_url,detail) values (null,#{title},#{speakerId},#{courseId},#{time},#{imageUrl},#{videoUrl},#{detail})
+    </insert>
+
+    <!-- 根据id删除相应的video信息 -->
+    <delete id="deleteVideo">
+        delete from video where id = #{id}
+    </delete>
+
+    <!-- 条件查询 -->
+    <select id="findVideoByCondition" resultMap="BaseResultMap">
+         select video.id,title,detail,time,speaker_id,speaker_name,play_num from video,speaker where video.speaker_id = speaker.id
+
+            <if test="title != '' ">
+              and title like concat('%',#{title},'%')
+            </if>
+
+            <if test="speakerId !=0">
+               and speaker_id = #{speakerId}
+            </if>
+
+            <if test="courseId !=0">
+               and course_id = #{courseId}
+            </if>
+
+
+    </select>
+</mapper>
